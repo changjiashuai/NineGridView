@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <io.github.changjiashuai.ninegridview.SquareImageView
+        android:id="@+id/iv_square_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/bga_pp_ic_holder_light" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:padding="2dp"
+        android:src="@drawable/bga_pp_ic_delete"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</RelativeLayout>
