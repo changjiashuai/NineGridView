@@ -37,30 +37,16 @@ android:
   licenses:
    - android-sdk-license.+
    - google-gdk-license.+
-   - ".+"
+   - '.+'
 
   before_install:
-	- echo 'count=0' > /home/travis/.android/repositories.cfg # Avoid warning
-    - sdkmanager --list || true
-    - sdkmanager --list --help || true
-    # - sdkmanager --uninstall "system-images;android-15;default;armeabi-v7a"
-    # ...
-    #  - echo yes | sdkmanager "tools"
-    #  - echo yes | sdkmanager "platforms;android-23"
-    - echo yes | sdkmanager "platforms;android-25"
-    - echo yes | sdkmanager "extras;android;m2repository"
-    - echo yes | sdkmanager "extras;google;m2repository"
-    - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1"
+  	- echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1"
     - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.1"
-    #  - echo yes | sdkmanager "system-images;android-23;google_apis;armeabi-v7a"
     - echo "$PATH"
     - ls -Al
     - ls /usr/local/android-sdk -Al
     - ls ${ANDROID_HOME} -Al
     - ls ${ANDROID_HOME}/licenses -Al
-    # ...
-    - sdkmanager --list || true
-    - avdmanager list || true
 
   before_script:
     - android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-25,sys-img-x86_64-android-25
