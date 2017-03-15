@@ -3,6 +3,7 @@
 local.properties
 .idea
 gradle.properties
+test.jks
 .DS_Store
 /build
 /captures

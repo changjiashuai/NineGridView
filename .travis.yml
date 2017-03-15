@@ -1,22 +1,32 @@
 language: android
 jdk: oraclejdk8
-
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
-    - $HOME/.android/build-cache
-
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
 android:
   components:
-    - tools
-    - platform-tools
-    - build-tools-25.0.2
-    - android-25
-    - extra
-
-script: ./gradlew build
+  - tools
+  - platform-tools
+  - build-tools-25.0.2
+  - android-25
+  - extra
+script:
+- "./gradlew :app:assembleRelease"
+before_install:
+- gem install fir-cli
+- openssl aes-256-cbc -K $encrypted_59c5087c0788_key -iv $encrypted_59c5087c0788_iv
+  -in dy.keystore.enc -out dy.keystore -d
+deploy:
+  provider: releases
+  api_key:
+    secure: uKoL8DA9AL0LGVqQuWi9eTujh6vZ/dsOAJjLKH+YxGbaX85fjAbwtptikbUHEYWXY5dezbNSFgTrZG3xiPWMKCgV61+FGSx9WxhGBNv+s2sZ0ET8dZWjGr13xkIqJ7nOKA3Ge5mw3/4GPvMoq8RusGa5RCYa0cl0vwrhqUMaiRO14sD1Ql38ZO0fNt+jNAnPHybE8ehpmA9lhqd+MIpHg65Bcy3Rf+PPrArGFP5ZEgy11JGsyIMWugcaaqpLdy5eI8i0dU0K4/jH6QVggJt5Pwh637rng+JA5Uo7Rd5apwt+1tQOqwb6n/ewqeG6x+hakcDWeqIzhrJth97ohSiODq4VfDtcY1+J24iQLGawnWIY5JRWlgtrxM3e0dAplqQy/fjOEXkzZ90LXrEYH4jeZO8K20SrhMmN+jpPA5lFekaE7mkciLOcaiTWD+v5/84rf73MTI+2QBLoNu0nt3/4k+WIttFV1rfMha65xPlsrEUT8dOQsGsYCD/keLigHdaJb3/iZSShNORXJoZfUOflXTd4nlHPTzS4cIL3bP7RZkX5TFB/RByJi5Zo7+eZIOxpB7uZfKDvdFq+Sgqb5wr/vNOyKmPi7cf9kphSdHwHMKj9AUCfj5exy2YbNBuB+1i2aIgKZ0HmLy1gYBz1L6doOXpHTla3g9TN4VNuk+C2vSs=
+  file: app/build/outputs/apk/app-release.apk
+  skip_cleanup: true
+  on:
+    repo: changjiashuai/NineGridView
+    tags: true
