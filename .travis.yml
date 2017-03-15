@@ -1,5 +1,13 @@
 language: android
 jdk: oraclejdk8
+env:
+  global:
+    - ANDROID_HOME=/usr/local/android-sdk-25.0.2
+    - TOOLS=${ANDROID_HOME}/tools
+    - TEMP=${ANDROID_HOME}/:${TOOLS}/:${TOOLS}/bin:${TOOLS}/emulator:${ANDROID_HOME}/platform-tools
+    - PATH=${TEMP}:${PATH}
+    - EMULATOR="system-images;android-25;google_apis;armeabi-v7a"
+
 android:
   components:
     # Uncomment the lines below if you want to
