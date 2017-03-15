@@ -26,9 +26,9 @@ android:
     - sys-img-armeabi-v7a-android-17
 
   licenses:
-    - 'android-sdk-preview-license-52d11cd2'
-    - 'android-sdk-license-.+'
-    - 'google-gdk-license-.+'
+   - android-sdk-license.+
+   - google-gdk-license.+
+   - ".+"
 
   before_install:
     - echo 'count=0' > /home/travis/.android/repositories.cfg # Avoid warning
@@ -38,7 +38,7 @@ android:
     # ...
     #  - echo yes | sdkmanager "tools"
     #  - echo yes | sdkmanager "platforms;android-23"
-    #  - echo yes | sdkmanager "platforms;android-25"
+    - echo yes | sdkmanager "platforms;android-25"
     - echo yes | sdkmanager "extras;android;m2repository"
     - echo yes | sdkmanager "extras;google;m2repository"
     - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1"
