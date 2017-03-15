@@ -21,6 +21,8 @@ before_install:
 - gem install fir-cli
 - openssl aes-256-cbc -K $encrypted_59c5087c0788_key -iv $encrypted_59c5087c0788_iv
   -in dy.keystore.enc -out dy.keystore -d
+before_deploy:
+- gem install mime-types -v 2.6.2
 deploy:
   provider: releases
   api_key:
@@ -30,3 +32,5 @@ deploy:
   on:
     repo: changjiashuai/NineGridView
     tags: true
+after_deploy:
+- fir p app/build/outputs/apk/app-release.apk -T $FIR_TOKEN -c "`git cat-file tag $TRAVIS_TAG`"
