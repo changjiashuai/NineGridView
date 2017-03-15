@@ -21,8 +21,8 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_59c5087c0788_key -iv $encrypted_59c5087c0788_iv
   -in dy.keystore.enc -out dy.keystore -d
 before_deploy:
-- gem install fir-cli
 - gem install mime-types -v 2.6.2
+- gem install fir-cli
 deploy:
   provider: releases
   api_key:
