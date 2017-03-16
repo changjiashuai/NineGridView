@@ -3,6 +3,7 @@ package io.github.changjiashuai.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import static io.github.changjiashuai.ImagePicker.REQUEST_CODE_PICK;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     public static final int IMAGE_PICKER = 0;
     private SortableNineGridView mSortableNineGridView;
     private ArrayList<String> urls = new ArrayList<>(Arrays.asList("http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered11.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered12.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered13.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered14.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered15.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered16.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered17.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered18.png", "http://7xk9dj.com1.z0.glb.clouddn.com/refreshlayout/images/staggered19.png"));
@@ -57,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
 //                initMultiPickerWithAllConfig();
                 initMultiPicker();
                 Toast.makeText(MainActivity.this, "onNineGridViewItemClick", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNineGridViewItemSortFinished(SortableNineGridView sortableNineGridView,
+                                                       int fromPosition, int toPosition) {
+                Log.i(TAG, "onNineGridViewItemSortFinished: " + fromPosition + " --> " + toPosition);
             }
         });
         mSortableNineGridView.setData(urls);

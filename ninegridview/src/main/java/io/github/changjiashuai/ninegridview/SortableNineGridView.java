@@ -336,12 +336,18 @@ public class SortableNineGridView extends RecyclerView implements NineGridViewAd
         }
 
         @Override
-        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source, RecyclerView.ViewHolder target) {
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder source,
+                              RecyclerView.ViewHolder target) {
             if (source.getItemViewType() != target.getItemViewType()
                     || mPhotoAdapter.isPlusItem(target.getAdapterPosition())) {
                 return false;
             }
-            mPhotoAdapter.moveItem(source.getAdapterPosition(), target.getAdapterPosition());
+            int fromPosition = source.getAdapterPosition();
+            int toPosition = target.getAdapterPosition();
+            mPhotoAdapter.moveItem(fromPosition, toPosition);
+            if (mOnSortableNineGridViewListener!=null){
+                mOnSortableNineGridViewListener.onNineGridViewItemSortFinished(SortableNineGridView.this, fromPosition, toPosition);
+            }
             return true;
         }
 
@@ -382,10 +388,12 @@ public class SortableNineGridView extends RecyclerView implements NineGridViewAd
                                         int position, ArrayList<String> models);
 
         void onDeleteNineGridViewItemClick(SortableNineGridView sortableNineGridView, View view,
-                                           int position, String model, ArrayList<String> models);
+                                           int position, String path, ArrayList<String> paths);
 
         void onNineGridViewItemClick(SortableNineGridView sortableNineGridView, View view,
-                                     int position, String model, ArrayList<String> models);
+                                     int position, String path, ArrayList<String> paths);
+
+        void onNineGridViewItemSortFinished(SortableNineGridView sortableNineGridView, int fromPosition, int toPosition);
     }
 
     public void setOnSortableNineGridViewListener(OnSortableNineGridViewListener onSortableNineGridViewListener) {
